@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Generated / personal files
+assets/background.jpg
+saves/
+run_log.txt
+run_err.log
+*.log
+
+# OS / IDE
+Thumbs.db
+.DS_Store
+.vscode/
+.idea/
