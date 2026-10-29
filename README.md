@@ -1,24 +1,16 @@
-# ⚡ Atomic Snap Vanish
+# atomic-snap-vanish
 
-**Chutki bajao aur vanish ho jao.** Snap your fingers on camera and your body explodes into glowing particles, collapses into a blackhole vortex — then your own atoms spell out your excuse (`BRB...`, `GONE`, `MY INTERNET DIED`) before crumbling to dust. Built for leaving Zoom / Google Meet calls in style. 😎
+I saw that viral reel of a guy vanishing out of his meetings (@Nicovic17's [vanish_webcam](https://github.com/Nicovic17/vanish_webcam)) and thought: neat, but the room just... goes empty? Too polite. I wanted the meeting to *know* something happened.
 
-> *"You were never there — only your message remained."*
+So this one works differently: you **snap your fingers**. Your body blows apart into glowing particles, they collapse into a blackhole vortex, and then your own atoms spell out your excuse — `BRB...`, `GONE`, `MY INTERNET DIED` — before crumbling into dust. Then the room is empty. You were never there; only the message remained.
 
-Inspired by the viral introvert-meeting-exit idea ([Nicovic17/vanish_webcam](https://github.com/Nicovic17/vanish_webcam)) — rebuilt from scratch with snap-gesture detection and a cinematic 5-phase "Void Sequence".
+Credit where it's due — the idea sparked from Nicovic17's repo. This is a from-scratch rebuild (no shared code) with a snap gesture instead of the peace sign, and a particle-to-text morph I haven't seen in any of the webcam-vanish projects out there.
 
-## ✨ The Void Sequence
+## How to play
 
-| Phase | What happens |
-|---|---|
-| 1. **DISSOLVE** | Shockwave! Your body bursts into 2,400 additive-glow particles (1 in 4 is an Infinity-Stone color) |
-| 2. **VORTEX** | All particles spiral into a pulsing blackhole at the snap point |
-| 3. **ASSEMBLE** | Your atoms fly out and assemble into a glowing message |
-| 4. **THE MESSAGE** | The text shimmers like stardust for ~5 seconds |
-| 5. **CRUMBLE** | The message dissolves top-down into falling dust → empty room |
+Step out of frame for 3 seconds so it grabs your empty-room background. Pinch your **thumb and middle finger** together — a golden aura shows up. Snap them apart. Watch the sequence. Show a **✌️ peace sign** when you want back in (sparks fly in from the screen edges and rebuild you, there's a chime and everything).
 
-Plus: **Magic Rebuild** (✌️ peace sign → sparks fly in from the screen edges and rebuild you, with a chime), **Ghost Echo** (a spectral replay of your last seconds haunts the vanished room), **Magic Wand Trail** (index finger leaves sparkles), **golden charge aura** while priming the snap, and floating **golden dust motes**.
-
-## 🚀 Quick Start
+Install:
 
 ```bash
 git clone https://github.com/turfin-logic/atomic-snap-vanish.git
@@ -27,56 +19,24 @@ pip install -r requirements.txt
 python snap_vanish.py
 ```
 
-Windows: double-click **`setup.bat`** once, then **`run.bat`** every time.
+On Windows: `setup.bat` once, then `run.bat` every time.
 
-**How to play:** step out of frame for 3 seconds (it captures your empty room background) → pinch **thumb + middle finger** → a golden aura appears → **SNAP!** → show a **✌️ peace sign** to rebuild.
+## The small stuff
 
-## ⌨️ Controls
+- The void message cycles with `T` — BRB / GONE / AFK / MY INTERNET DIED / IN A MEETING
+- `E` toggles Ghost Echo: after you vanish, a flickering spectral replay of your last 2.5 seconds haunts the room. Deeply unnecessary. Keeping it.
+- `M` toggles a sparkle trail on your index fingertip
+- `P` saves a photo into `saves/`, `B` re-captures the background, `C` switches cameras (it reads device names, so it skips phone/virtual cams like Iriun automatically), `Q` quits
+- Snap gesture is pinch thumb+middle, then release fast — same muscle motion as a real snap, so it triggers naturally
 
-| Key | Action |
-|---|---|
-| `[SPACE]` | Manual snap (trigger the Void Sequence) |
-| `[T]` | Cycle the void message: `BRB... → GONE → AFK → MY INTERNET DIED → IN A MEETING` |
-| `[R]` | Magic Rebuild |
-| `[E]` | Ghost Echo ON/OFF |
-| `[M]` | Magic Wand Trail ON/OFF |
-| `[P]` | Save photo of the current frame (`saves/`) |
-| `[B]` | Re-capture background |
-| `[C]` | Switch camera (cycles **by device name**) |
-| `[Q]` / `ESC` | Quit |
+## Zoom / Meet / Teams
 
-## 🎥 Using with Zoom / Google Meet / Teams
+The app streams into a virtual camera, so in your meeting app just pick **OBS Virtual Camera** as your webcam. You need OBS installed once (`winget install OBSProject.OBSStudio`) — you never have to open OBS itself. The app finds the virtual cam automatically on startup.
 
-The app pipes its output into a **virtual camera** so you can select it in any meeting app:
+## Notes
 
-1. **Install [OBS Studio](https://obsproject.com/)** (`winget install OBSProject.OBSStudio`). You don't need to stream or record — OBS just ships the *OBS Virtual Camera* driver.
-2. Run `snap_vanish.py`. It detects the virtual camera automatically:
-   ```
-   [+] Virtual Camera active: OBS Virtual Camera
-   ```
-3. Start a Zoom / Meet / Teams call → open **video settings** → select **"OBS Virtual Camera"** as your camera.
-4. Snap. Vanish. Leave the meeting like a legend.
+- Python, OpenCV, MediaPipe, NumPy, Pygame, pyvirtualcam. Everything stays on your machine — nothing is recorded or uploaded.
+- Black camera frame? HP laptops hide the lens behind a privacy slider, and some have a camera kill-switch key (F2/F8). The app keeps rescanning and connects the moment a real image shows up.
+- MIT licensed. If you build something on top of it, a link back is appreciated but not required.
 
-*(Alternative: the [Unity Capture](https://github.com/schellingb/UnityCapture) driver also works — pyvirtualcam supports both.)*
-
-## 🛠 Troubleshooting
-
-- **Camera opens but shows black** — some laptops have an IR camera at index 0. Press `[C]` to cycle cameras, or wait: the app now auto-detects cameras **by name** and prefers your real laptop camera over phone/virtual ones (Iriun, DroidCam, OBS...).
-- **Using Iriun (phone as webcam)** — open the Iriun app on your phone first; the app shows a *WAITING FOR CAMERA* screen until it starts streaming.
-- **"Virtual Camera not active"** — install OBS Studio (see above), then restart the app.
-- **Low FPS** — close other camera apps; MediaPipe runs on CPU.
-
-## 🔒 Privacy
-
-100% local. Nothing is recorded, stored, or uploaded — every frame dies in RAM.
-
-## 📦 Tech
-
-Python · OpenCV · MediaPipe (Hands + Selfie Segmentation) · NumPy · Pygame · PyVirtualCam · pygrabber
-
-## 🙏 Credits
-
-- Idea spark: [Nicovic17/vanish_webcam](https://github.com/Nicovic17/vanish_webcam) (the viral introvert meeting-exit)
-- Effects, snap detection, Void Sequence, Ghost Echo & magic: built from scratch
-
-MIT License — see [LICENSE](LICENSE).
+Inspired by [Nicovic17/vanish_webcam](https://github.com/Nicovic17/vanish_webcam) — go star that one too.
