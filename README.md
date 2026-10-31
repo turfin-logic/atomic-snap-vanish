@@ -4,6 +4,12 @@ I saw that viral reel of a guy vanishing out of his meetings (@Nicovic17's [vani
 
 So this one works differently: you **snap your fingers**. Your body blows apart into glowing particles, they collapse into a blackhole vortex, and then your own atoms spell out your excuse — `BRB...`, `GONE`, `MY INTERNET DIED` — before crumbling into dust. Then the room is empty. You were never there; only the message remained.
 
+## ✨ Preview
+
+![Effect preview — snap, dissolve, spell your excuse, vanish](assets/demo.gif)
+
+*Rendered preview of the effect sequence (snap → dissolve → vortex → excuse → dust). The real thing runs live on your webcam, driven by your actual hand — MediaPipe tracks the snap.*
+
 Credit where it's due — the idea sparked from Nicovic17's repo. This is a from-scratch rebuild (no shared code) with a snap gesture instead of the peace sign, and a particle-to-text morph I haven't seen in any of the webcam-vanish projects out there.
 
 ## How to play
